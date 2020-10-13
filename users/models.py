@@ -1,9 +1,10 @@
 from django.contrib.auth.models import AbstractUser
 from django.db import models
 
-
+# 장고는 models 파일을 확인 후 migration파일을 생성함
+# 원하는 DataBase가 어떻게 생겼는지 설명하는 곳
 # Create your models here.
-class User(AbstractUser):
+class User(AbstractUser):  # AbstractUser를 상속받았기 때문에 migrations에 ID, Password 등이 있는 것
 
     """ Custom User Model """
 

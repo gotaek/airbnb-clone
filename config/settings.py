@@ -30,6 +30,7 @@ ALLOWED_HOSTS = []
 
 # Application definition
 
+# django에서 지원해주는 apps
 DJANGO_APPS = [
     "django.contrib.admin",
     "django.contrib.auth",
@@ -38,15 +39,17 @@ DJANGO_APPS = [
     "django.contrib.messages",
     "django.contrib.staticfiles",
 ]
+# third_party apps
 THIRD_PARTY_APPS = [
     " django_countries",
 ]
-
+# 직접 만든 apps
 PROJECT_APPS = [
     "core.apps.CoreConfig",
     "users.apps.UsersConfig",
     "rooms.apps.RoomsConfig",
 ]
+# 설치된 apps
 INSTALLED_APPS = DJANGO_APPS + PROJECT_APPS
 
 MIDDLEWARE = [
