@@ -6,11 +6,12 @@ from . import models
 # Register your models here.
 
 
-@admin.register(models.User) # admin 패널에서 User를 보고 싶어
-class CustomUserAdmin(UserAdmin): # User를 컨트롤한  클래스가 이게 될거야
+@admin.register(models.User)  # admin 패널에서 User를 보고 싶어
+class CustomUserAdmin(UserAdmin):  # User를 컨트롤한  클래스가 이게 될거야
 
     """Custom User Admin"""
 
+    # 필드셋을 다음과 같은 방식으로 커스텀
     fieldsets = UserAdmin.fieldsets + (
         (
             "Custom Profile",

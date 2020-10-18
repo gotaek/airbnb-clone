@@ -1,8 +1,6 @@
 from django.contrib import admin
 from . import models
 
-# Register your models here.
-
 
 @admin.register(models.RoomType, models.Facility, models.Amenity, models.HouseRule)
 class ItemAdmin(admin.ModelAdmin):
@@ -32,7 +30,7 @@ class RoomAdmin(admin.ModelAdmin):
         (
             "More About the Space",
             {
-                "classes": ("collapse",),
+                "classes": ("collapse",),  # 창을 접을 수 있는 기능을 제공
                 "fields": (
                     "amenities",
                     "facilities",
@@ -54,6 +52,7 @@ class RoomAdmin(admin.ModelAdmin):
         ("Last Details", {"fields": ("host",)}),
     )
 
+    # table을 만들어주어서 표시
     list_display = (
         "name",
         "city",
@@ -69,6 +68,8 @@ class RoomAdmin(admin.ModelAdmin):
         "count_amenities",
         "count_photos",
     )
+
+    # filter 기능을 제공
     list_filter = (
         "instant_book",
         "host__superhost",
@@ -80,14 +81,17 @@ class RoomAdmin(admin.ModelAdmin):
         "country",
     )
 
+    # ForiegnKey나 ManyToMany 는 다음과 같이 함수를 정의해 줌으로써 list_display에 추가
     def count_amenities(self, obj):
         return obj.amenities.count()
 
     def count_photos(self, obj):
         return obj.photos.count()
 
+    # 검색 기능을 활성화
     search_fields = ("^city", "^host__username")
 
+    # 조금 더 보기좋게 만들어 줌
     filter_horizontal = ("amenities", "facilities", "house_rules")
 
 

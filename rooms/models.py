@@ -2,10 +2,9 @@ from django.db import models
 from django_countries.fields import CountryField
 from core import models as core_models
 
-# Create your models here.
-
 # item 들을 위한 class
 class AbstractItem(core_models.TimeStampedModel):
+
     """Abstract Item"""
 
     name = models.CharField(max_length=80)
@@ -22,6 +21,7 @@ class RoomType(AbstractItem):
     """ RoomType Model Definition """
 
     class Meta:
+        # rename
         verbose_name = "Room Type"
 
 
