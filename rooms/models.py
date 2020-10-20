@@ -89,3 +89,13 @@ class Room(core_models.TimeStampedModel):
 
     def __str__(self):
         return self.name
+
+    # room의 전체 평점
+    def total_rating(self):
+        all_reviews = self.reviews.all()
+        if not len(all_reviews):
+            return "No reviwes"
+        all_ratings = 0
+        for review in all_reviews:
+            all_ratings += review.rating_average()
+        return all_ratings / len(all_reviews)

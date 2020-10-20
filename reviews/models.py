@@ -1,7 +1,7 @@
 from django.db import models
 from core import models as core_models
 
-# Create your models here.
+
 class Review(core_models.TimeStampedModel):
 
     """ Review Model Definition """
@@ -22,3 +22,17 @@ class Review(core_models.TimeStampedModel):
 
     def __str__(self):
         return f"{self.review} - {self.room}"
+
+    # 한사람의 평점
+    def rating_average(self):
+        avg = (
+            self.accuracy
+            + self.communication
+            + self.cleanliness
+            + self.location
+            + self.check_in
+            + self.value
+        ) / 6
+        return round(avg, 2)
+
+    rating_average.short_description = "Avg."

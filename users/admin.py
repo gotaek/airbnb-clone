@@ -28,3 +28,16 @@ class CustomUserAdmin(UserAdmin):  # User를 컨트롤한  클래스가 이게 �
             },
         ),
     )
+
+    list_filter = UserAdmin.list_filter + ("superhost",)
+
+    list_display = (
+        "username",
+        "email",
+        "is_active",
+        "language",
+        "currency",
+        "superhost",
+        "is_staff",
+        "is_superuser",
+    )
