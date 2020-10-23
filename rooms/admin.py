@@ -18,14 +18,20 @@ class ItemAdmin(admin.ModelAdmin):
     pass
 
 
+class PhotoInline(admin.TabularInline):
+
+    model = models.Photo
+
+
 @admin.register(models.Room)
 class RoomAdmin(admin.ModelAdmin):
     """ Room Admin Definition """
 
+    inlines = (PhotoInline,)
     fieldsets = (
         (
             "Basic Info",
-            {"fields": ("name", "description", "country", "address", "price")},
+            {"fields": ("name", "description", "country", "city", "address", "price")},
         ),
         ("Times", {"fields": ("check_in", "check_out", "instant_book")}),
         (
@@ -82,7 +88,7 @@ class RoomAdmin(admin.ModelAdmin):
         "city",
         "country",
     )
-
+    raw_id_fields = ("host",)
     # ForiegnKey나 ManyToMany 는 다음과 같이 함수를 정의해 줌으로써 list_display에 추가
     def count_amenities(self, obj):
         return obj.amenities.count()
