@@ -23,6 +23,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SECRET_KEY = "rg4*2n3gb*ov!znfd0+&(-))mvtzsk_deyp2v7934@oz2^k^&k"
 
 # SECURITY WARNING: don't run with debug turned on in production!
+# 개발자 모드
 DEBUG = True
 
 ALLOWED_HOSTS = []
@@ -136,5 +137,6 @@ USE_TZ = True
 
 STATIC_URL = "/static/"
 AUTH_USER_MODEL = "users.User"
-MEDIA_ROOT = os.path.join(BASE_DIR, "uploads")
+# MEDIA_ROOT는 장고에게 어디에다 우리가 업로드한 파일들을 써야할 지 말해주는 곳
+MEDIA_ROOT = os.path.join(BASE_DIR, "uploads")  # uploads 폴더 생성
 MEDIA_URL = "/media/"

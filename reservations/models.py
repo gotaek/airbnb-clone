@@ -39,6 +39,7 @@ class Reservation(core_models.TimeStampedModel):
         now = timezone.now().date()
         return now > self.check_in and now < self.check_out
 
+    # boolean type을 Icon으로 표시
     in_progress.boolean = True
 
     def is_finished(self):

@@ -34,5 +34,5 @@ class Review(core_models.TimeStampedModel):
             + self.value
         ) / 6
         return round(avg, 2)
-
+    # admin 패널에서 보여지는 문자열을 수정
     rating_average.short_description = "Avg."

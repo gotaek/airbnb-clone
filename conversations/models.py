@@ -15,7 +15,7 @@ class Conversation(core_models.TimeStampedModel):
         usernames = []
         for user in self.participants.all():
             usernames.append(user.username)
-        return ", ".join(usernames)
+        return ", ".join(usernames)  # 리스트에서 문자열로 바꿔 줌
 
     def count_messages(self):
         return self.messages.count()
@@ -23,7 +23,7 @@ class Conversation(core_models.TimeStampedModel):
     count_messages.short_description = "Number of Messages"
 
     def count_participants(self):
-        return self.messages.count()
+        return self.participants.count()
 
     count_participants.short_description = "Number of Participants"
 

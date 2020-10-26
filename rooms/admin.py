@@ -1,5 +1,5 @@
 from django.contrib import admin
-from django.utils.html import mark_safe
+from django.utils.html import mark_safe  # 보안때문에 추가
 from . import models
 
 
@@ -18,6 +18,7 @@ class ItemAdmin(admin.ModelAdmin):
     pass
 
 
+# admin 안에 admin을 넣는 방법, rooms Admin에서 Photos를 볼 수 있게 함
 class PhotoInline(admin.TabularInline):
 
     model = models.Photo
@@ -88,6 +89,7 @@ class RoomAdmin(admin.ModelAdmin):
         "city",
         "country",
     )
+    # 작은 버전의 user admin을 갖게 됨
     raw_id_fields = ("host",)
     # ForiegnKey나 ManyToMany 는 다음과 같이 함수를 정의해 줌으로써 list_display에 추가
     def count_amenities(self, obj):

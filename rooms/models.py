@@ -53,7 +53,7 @@ class Photo(core_models.TimeStampedModel):
     """Photo Model Definition """
 
     caption = models.CharField(max_length=80)
-    file = models.ImageField(upload_to="room_photos")
+    file = models.ImageField(upload_to="room_photos")  # uploads 폴더 안의 room_photos에 저장
     room = models.ForeignKey("Room", related_name="photos", on_delete=models.CASCADE)
 
     def __str__(self):
@@ -77,6 +77,7 @@ class Room(core_models.TimeStampedModel):
     check_in = models.TimeField()
     check_out = models.TimeField()
     instant_book = models.BooleanField(default=False)
+    # related_name ForiegnKey나 ManyToManyField에 붙여주면서 접근이 가능하게 함
     host = models.ForeignKey(
         "users.User", related_name="rooms", on_delete=models.CASCADE
     )
@@ -90,8 +91,9 @@ class Room(core_models.TimeStampedModel):
     def __str__(self):
         return self.name
 
+    # 저장할 때마다 view,admin등등에 적용
     def save(self, *args, **kwargs):
-        self.city = str.capitalize(self.city)
+        self.city = str.capitalize(self.city)  # intercept
         super().save(*args, **kwargs)
 
     # room의 전체 평점
