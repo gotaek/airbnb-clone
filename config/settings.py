@@ -43,6 +43,7 @@ DJANGO_APPS = [
 # third_party apps
 THIRD_PARTY_APPS = [
     " django_countries",
+    "django_seed",
 ]
 # 직접 만든 apps
 PROJECT_APPS = [
