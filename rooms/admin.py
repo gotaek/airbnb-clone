@@ -98,6 +98,7 @@ class RoomAdmin(admin.ModelAdmin):
     def count_photos(self, obj):
         return obj.photos.count()
 
+    count_photos.short_description = "Photo Count"
     # 검색 기능을 활성화
     search_fields = ("^city", "^host__username")
 
