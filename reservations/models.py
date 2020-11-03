@@ -10,7 +10,7 @@ class Reservation(core_models.TimeStampedModel):
     """ Reservation Model Definition """
 
     STATUS_PENDING = "pending"
-    STATUS_CONFIRMED = "confiremed"
+    STATUS_CONFIRMED = "confirmed"
     STATUS_CANCELED = "canceled"
 
     STATUS_CHOICES = (
@@ -22,7 +22,6 @@ class Reservation(core_models.TimeStampedModel):
     status = models.CharField(
         max_length=12, choices=STATUS_CHOICES, default=STATUS_PENDING
     )
-
     guest = models.ForeignKey(
         "users.User", related_name="reservations", on_delete=models.CASCADE
     )
@@ -37,7 +36,7 @@ class Reservation(core_models.TimeStampedModel):
 
     def in_progress(self):
         now = timezone.now().date()
-        return now > self.check_in and now < self.check_out
+        return now >= self.check_in and now <= self.check_out
 
     # boolean type을 Icon으로 표시
     in_progress.boolean = True
