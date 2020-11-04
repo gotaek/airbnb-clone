@@ -6,12 +6,6 @@ class Command(BaseCommand):
 
     help = "This command creates amenities"
 
-    """     def add_arguments(self, parser):
-        parser.add_argument(
-            "--times", help="How many times do you want me to tell you that I love you?"
-        )
-        """
-
     def handle(self, *args, **options):
         amenities = [
             "Air conditioning",
@@ -57,6 +51,7 @@ class Command(BaseCommand):
             "Towels",
             "TV",
         ]
+        # 배열에 저장한 amenities를 하나 씩 가져와 create
         for a in amenities:
             Amenity.objects.create(name=a)
-        self.stdout.write(self.style.SUCCESS("Amenities created!"))
+        self.stdout.write(self.style.SUCCESS("Amenities created!"))  # 성공할 시 표시될 문자

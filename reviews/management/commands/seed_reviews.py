@@ -33,8 +33,8 @@ class Command(BaseCommand):
                 "location": lambda x: random.randint(0, 6),
                 "check_in": lambda x: random.randint(0, 6),
                 "value": lambda x: random.randint(0, 6),
-                "room": lambda x: random.choice(rooms),
-                "user": lambda x: random.choice(users),
+                "room": lambda x: random.choice(rooms),  # rooms를 랜덤으로 설정
+                "user": lambda x: random.choice(users),  # users를 랜덤으로 설정
             },
         )
         seeder.execute()

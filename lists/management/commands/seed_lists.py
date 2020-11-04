@@ -37,6 +37,8 @@ class Command(BaseCommand):
         cleaned = flatten(list(created.values()))
         for pk in cleaned:
             list_model = list_models.List.objects.get(pk=pk)
-            to_add = rooms[random.randint(0, 5) : random.randint(6, 30)]
-            list_model.rooms.add(*to_add)
+            to_add = rooms[
+                random.randint(0, 5) : random.randint(6, 30)
+            ]  # 이런 식으로 갯수를 설정할 수 있음
+            list_model.rooms.add(*to_add)  # 각자의 요소를 가리킴
         self.stdout.write(self.style.SUCCESS(f"{number} {NAME} created!"))

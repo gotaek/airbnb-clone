@@ -37,21 +37,24 @@ class Command(BaseCommand):
                 "baths": lambda x: random.randint(0, 5),
             },
         )
-        created_photos = seeder.execute()
-        created_clean = flatten(list(created_photos.values()))
+        created_photos = seeder.execute()  # 생성된 rooms를 가져옴
+        created_clean = flatten(list(created_photos.values()))  # 이상한 모양 정리
 
         amenities = room_models.Amenity.objects.all()
         facilities = room_models.Facility.objects.all()
         rules = room_models.HouseRule.objects.all()
 
-        for pk in created_clean:
-            room = room_models.Room.objects.get(pk=pk)
-            for i in range(3, random.randint(10, 17)):
+        for pk in created_clean:  # 생성된 모든 room을 반복문으로
+            room = room_models.Room.objects.get(pk=pk)  # primary key로 룸에 주목
+            for i in range(
+                3, random.randint(10, 17)
+            ):  # 최소 3개에서 10~17개까지의 photo를 생성할 것임
                 room_models.Photo.objects.create(
                     caption=seeder.faker.sentence(),
                     room=room,
                     file=f"room_photos/{random.randint(1,10)}.webp",
                 )
+            # 모든 amenities를 반복문을 돌려 랜덤 설정,facilities, rules도 마찬가지
             for a in amenities:
                 magic_number = random.randint(0, 15)
                 if magic_number % 2 == 0:
