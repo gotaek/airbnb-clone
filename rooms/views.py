@@ -1,7 +1,10 @@
 from django.utils import timezone
-from django.shortcuts import render
+from django.urls import reverse
+from django.shortcuts import render, redirect  # html을 return할 수 있게 함
 from django.views.generic import ListView
 from . import models
+
+# view 는 그url을 통해 view로 들어갈때마다 http request를 생성
 
 
 class HomeView(ListView):
@@ -15,6 +18,10 @@ class HomeView(ListView):
     context_object_name = "rooms"
 
 
+# http response를 반환해야함
 def room_detail(request, pk):
-
-    return render(request, "rooms/detail.html")
+    try:
+        room = models.Room.objects.get(pk=pk)
+        return render(request, "rooms/detail.html", {"room": room})
+    except models.Room.DoesNotExist:
+        return redirect(reverse("core:home"))
