@@ -1,6 +1,6 @@
-from django.utils import timezone
-from django.urls import reverse
-from django.shortcuts import render, redirect  # html을 return할 수 있게 함
+from django.view.generic import ListView, DetailView
+from django.http import Http404
+from django.shortcuts import render  # html을 return할 수 있게 함
 from django.views.generic import ListView
 from . import models
 
@@ -24,4 +24,4 @@ def room_detail(request, pk):
         room = models.Room.objects.get(pk=pk)
         return render(request, "rooms/detail.html", {"room": room})
     except models.Room.DoesNotExist:
-        return redirect(reverse("core:home"))
+        raise Http404()
