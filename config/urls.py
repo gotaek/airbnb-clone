@@ -7,6 +7,7 @@ from django.conf.urls.static import static  # static 파일을 제공하는 것�
 urlpatterns = [
     path("", include("core.urls", namespace="core")),
     path("rooms/", include("rooms.urls", namespace="rooms")),
+    path("users/", include("users.urls", namespace="users")),
     path("admin/", admin.site.urls),
 ]
 # 만약 개발중이라면 폴더 안의 파일들을 제공
